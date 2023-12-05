@@ -1,3 +1,4 @@
+import 'package:fitness_ui/utils/imagedata.dart';
 import 'package:flutter/material.dart';
 
 class AwesomeCollectionWidget extends StatelessWidget {
@@ -28,7 +29,7 @@ class AwesomeCollectionWidget extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: Image.asset(
-                  'assets/img/awesomecollection1.png',
+                  ImageData.awesomecollection1,
                   fit: BoxFit.cover, // Ensure the image covers the entire width
                 ),
               ),
@@ -40,7 +41,7 @@ class AwesomeCollectionWidget extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Image.asset(
-                      'assets/img/awesomecollection2.png',
+                      ImageData.awesomecollection2,
                       fit: BoxFit
                           .cover, // Ensure the image covers the entire width
                     ),
@@ -51,7 +52,7 @@ class AwesomeCollectionWidget extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Image.asset(
-                      'assets/img/awesomecollection3.png',
+                      ImageData.awesomecollection3,
                       fit: BoxFit
                           .cover, // Ensure the image covers the entire width
                     ),

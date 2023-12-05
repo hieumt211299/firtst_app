@@ -58,25 +58,31 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/img/fire.png
-    - assets/img/nft1.png
-    - assets/img/nft2.png
-    - assets/img/avatar1.png
-    - assets/img/avatar2.png
-    - assets/img/category1.png
-    - assets/img/category2.png
-    - assets/img/category3.png
-    - assets/img/hotcolection1.png
-    - assets/img/hotcolection2.png
-    - assets/img/awesomecollection1.png
-    - assets/img/awesomecollection2.png
-    - assets/img/awesomecollection3.png
+    - src/assets/img/
+    - src/assets/svg/
 
-    - assets/svg/vector.svg
-    - assets/svg/vector2.svg
-    - assets/svg/ethreum.svg
-    - assets/svg/search.svg
-    - assets/svg/wallet.svg
+    # - assets/img/fire.png
+    # - assets/img/nft1.png
+    # - assets/img/nft2.png
+    # - assets/img/avatar1.png
+    # - assets/img/avatar2.png
+    # - assets/img/category1.png
+    # - assets/img/category2.png
+    # - assets/img/category3.png
+    # - assets/img/hotcolection1.png
+    # - assets/img/hotcolection2.png
+    # - assets/img/awesomecollection1.png
+    # - assets/img/awesomecollection2.png
+    # - assets/img/awesomecollection3.png
+
+    # - assets/svg/vector.svg
+    # - assets/svg/vector2.svg
+    # - assets/svg/ethreum.svg
+    # - assets/svg/search.svg
+    # - assets/svg/wallet.svg
+    # - assets/svg/home.svg
+    # - assets/svg/chart.svg
+    # - assets/svg/search2.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

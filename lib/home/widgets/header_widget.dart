@@ -1,3 +1,4 @@
+import 'package:fitness_ui/utils/svgdata.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -26,9 +27,9 @@ class HeaderWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    SvgPicture.asset('assets/svg/vector.svg'),
+                    SvgPicture.asset(SvgData.vector),
                     SvgPicture.asset(
-                      'assets/svg/vector2.svg',
+                      SvgData.vector2,
                     ),
                   ],
                 ),
@@ -47,7 +48,7 @@ class HeaderWidget extends StatelessWidget {
               ],
             ),
             Row(children: [
-              SvgPicture.asset('assets/svg/ethreum.svg'),
+              SvgPicture.asset(SvgData.ethreum),
               const Text(
                 '3.421 ',
                 textAlign: TextAlign.right,

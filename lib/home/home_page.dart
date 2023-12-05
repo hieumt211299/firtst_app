@@ -1,199 +1,223 @@
+import 'package:fitness_ui/common/avatar.dart';
+import 'package:fitness_ui/common/avatar_check.dart';
 import 'package:fitness_ui/home/widgets/awesome_colection.dart';
 import 'package:fitness_ui/home/widgets/category_widget.dart';
-import 'package:fitness_ui/home/widgets/hot_colection.dart';
-import 'package:fitness_ui/home/widgets/trending_nft.dart';
+import 'package:fitness_ui/home/widgets/colection.dart';
+import 'package:fitness_ui/home/widgets/search_page/search_page.dart';
+import 'package:fitness_ui/home/widgets/trending/trending_nft.dart';
 import 'package:fitness_ui/home/widgets/header_widget.dart';
 import 'package:fitness_ui/home/widgets/search_bar_widget.dart';
+import 'package:fitness_ui/utils/imagedata.dart';
+import 'package:fitness_ui/utils/svgdata.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _HomePageState();
+  }
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  static final List<Widget> _widgetOptions = <Widget>[
+    const HomeWidget(),
+    const ChartWidget(),
+    const SearchPage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  // Widget _searchPage = SearchPage();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Padding(
-          padding: EdgeInsets.only(top: 30),
-          child: HeaderWidget(),
-        ),
+      backgroundColor: Colors.grey[50],
+      // appBar: AppBar(
+      //   title: const Padding(
+      //     padding: EdgeInsets.only(top: 30),
+      //     child: HeaderWidget(),
+      //   ),
+      // ),
+      body: SafeArea(child: _widgetOptions[_selectedIndex]),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _onItemTapped,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        items: [
+          BottomNavigationBarItem(
+            icon: ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                _selectedIndex == 0 ? Colors.pink : Colors.grey,
+                BlendMode.srcIn,
+              ),
+              child: SvgPicture.asset(SvgData.home),
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                _selectedIndex == 1 ? Colors.pink : Colors.grey,
+                BlendMode.srcIn,
+              ),
+              child: SvgPicture.asset(SvgData.chart),
+            ),
+            label: 'Chart',
+          ),
+          BottomNavigationBarItem(
+            icon: ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                _selectedIndex == 2 ? Colors.pink : Colors.grey,
+                BlendMode.srcIn,
+              ),
+              child: SvgPicture.asset(SvgData.search),
+            ),
+            label: 'Search',
+          ),
+          const BottomNavigationBarItem(
+              label: '',
+              icon: AvatarWidget(size: 30, avatar: ImageData.avatar1)),
+          // Add more BottomNavigationBarItems as needed
+        ],
+        // Add other properties as needed
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 25, top: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SearchBarWidget(),
-                const SizedBox(
-                  height: 20,
-                ),
-                const TrendingNFT(),
-                const SizedBox(
-                  height: 20,
-                ),
-                const CategoryWidget(),
-                const SizedBox(
-                  height: 40,
-                ),
-                const HotColectionWidget(),
-                const SizedBox(
-                  height: 20,
-                ),
-                const AwesomeCollectionWidget(),
-                const SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    );
+  }
+}
+
+class HomeWidget extends StatelessWidget {
+  const HomeWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 0, top: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(left: 25),
+              child: HeaderWidget(),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 25),
+              child: SearchBarWidget(),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const TrendingNFT(),
+            const SizedBox(
+              height: 20,
+            ),
+            const CategoryWidget(),
+            const SizedBox(
+              height: 40,
+            ),
+            const ColectionWidget(
+              title: 'Hot Colections',
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 25),
+              child: AwesomeCollectionWidget(),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 15, left: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Row(
                     children: [
                       Row(
                         children: [
-                          Row(
+                          AvatarCheckWidget(
+                              avatar: ImageData.avatar1,
+                              size: 44,
+                              place: 'bottom'),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Stack(
-                                children: [
-                                  Image.asset(
-                                    'assets/img/avatar1.png',
-                                    width: 44,
-                                    height: 44,
-                                    fit: BoxFit.fill,
-                                  ),
-                                  Positioned(
-                                    bottom: 0,
-                                    right: 0,
-                                    child: Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          Container(
-                                            width: 19,
-                                            height: 19,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 15,
-                                            height: 15,
-                                            child: Stack(
-                                              children: [
-                                                Positioned(
-                                                  left: 0,
-                                                  top: 0,
-                                                  child: Container(
-                                                    width: 15,
-                                                    height: 15,
-                                                    decoration:
-                                                        const ShapeDecoration(
-                                                      color: Color(0xFF007AFF),
-                                                      shape: OvalBorder(),
-                                                    ),
-                                                    child: const Center(
-                                                        child: Icon(
-                                                      Icons.check,
-                                                      size: 11,
-                                                    )),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ]),
-                                  )
-                                ],
+                              Text(
+                                'Abstrack 3D Coloring #332',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Abstrack 3D Coloring #332',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  Text(
-                                    'by Silvana',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontFamily: 'SF Pro Display',
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  )
-                                ],
-                              ),
+                              Text(
+                                'by Silvana',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontFamily: 'SF Pro Display',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )
                             ],
                           ),
                         ],
                       ),
-                      Container(
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(width: 1),
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Text('32 ITEM'),
-                        ),
-                      ),
                     ],
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-              ],
+                  Container(
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(width: 1),
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: Text('32 ITEM'),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        // height: 76,
-        decoration: const BoxDecoration(
-            border: Border(top: BorderSide(width: 1, color: Colors.grey))),
-        child: BottomNavigationBar(
-          selectedItemColor: Colors.pink,
-          unselectedItemColor: Colors.grey,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+            const SizedBox(
+              height: 20,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.bar_chart_outlined),
-              label: 'Chart',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Search',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.safety_check_outlined),
-              label: 'rt',
-            ),
-            // Add more BottomNavigationBarItems as needed
           ],
-          // Add other properties as needed
         ),
       ),
     );
-    // BottomNavigationBar:
-    // (BottomNavigationBar(items: [
-    //   Text('123123'),
-    // ]));
+  }
+}
+
+class ChartWidget extends StatelessWidget {
+  const ChartWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      'Index 1: chart',
+    );
   }
 }
