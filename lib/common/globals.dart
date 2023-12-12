@@ -12,7 +12,7 @@ class IGlobals {
   static User user2 = User(
     username: 'Richard',
     avatar: ImageData.avatar2, // Example path, adjust it accordingly
-    money: '5,412',
+    money: '5.412',
   );
 
   static Item item1 = Item(

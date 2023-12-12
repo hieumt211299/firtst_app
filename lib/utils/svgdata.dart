@@ -13,4 +13,7 @@ class SvgData {
   static const String gardientHeart = '$svgDir/gardient_heart.svg';
   static const String heart = '$svgDir/heart.svg';
   static const String arrowDown = '$svgDir/arrow_down.svg';
+  static const String ticketStar = '$svgDir/ticket_star.svg';
+  static const String discovery = '$svgDir/discovery.svg';
+  static const String chain = '$svgDir/chain.svg';
 }

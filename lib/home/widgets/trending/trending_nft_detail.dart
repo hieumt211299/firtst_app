@@ -470,31 +470,31 @@ class TrendingNFTDetailWidget extends StatelessWidget {
         ),
       ),
       /* Your detail screen content */
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.pink,
-        unselectedItemColor: Colors.grey,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(SvgData.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(SvgData.chart),
-            label: 'Chart',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(SvgData.search),
-            label: 'Search',
-          ),
-          const BottomNavigationBarItem(
-              label: '',
-              icon: AvatarWidget(size: 30, avatar: ImageData.avatar1)),
-          // Add more BottomNavigationBarItems as needed
-        ],
-        // Add other properties as needed
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   selectedItemColor: Colors.pink,
+      //   unselectedItemColor: Colors.grey,
+      //   showSelectedLabels: false,
+      //   showUnselectedLabels: false,
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       icon: SvgPicture.asset(SvgData.home),
+      //       label: 'Home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: SvgPicture.asset(SvgData.chart),
+      //       label: 'Chart',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: SvgPicture.asset(SvgData.search),
+      //       label: 'Search',
+      //     ),
+      //     const BottomNavigationBarItem(
+      //         label: '',
+      //         icon: AvatarWidget(size: 30, avatar: ImageData.avatar1)),
+      //     // Add more BottomNavigationBarItems as needed
+      //   ],
+      //   // Add other properties as needed
+      // ),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:fitness_ui/utils/svgdata.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-enum MoneyWidgetSize { small, large }
+enum MoneyWidgetSize { small, medium, large }
 
 class MoneyWidget extends StatefulWidget {
   const MoneyWidget(
@@ -31,6 +31,24 @@ class _MoneyyWidgetState extends State<MoneyWidget> {
       _height = 13;
       _width = 8;
       _fontSize = 13;
+    }
+    switch (widget.size) {
+      case MoneyWidgetSize.large:
+        _height = 25;
+        _width = 16;
+        _fontSize = 24;
+        break;
+      case MoneyWidgetSize.small:
+        _height = 13;
+        _width = 8;
+        _fontSize = 13;
+        break;
+      case MoneyWidgetSize.medium:
+        _height = 18;
+        _width = 13;
+        _fontSize = 18;
+        break;
+      default:
     }
 
     super.initState();

@@ -177,7 +177,7 @@ class ItemDetailWidget extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Row(children: [
@@ -194,7 +194,7 @@ class ItemDetailWidget extends StatelessWidget {
             size: 13,
           )
         ]),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
@@ -206,7 +206,7 @@ class ItemDetailWidget extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 25,
         ),
         Row(
@@ -218,7 +218,7 @@ class ItemDetailWidget extends StatelessWidget {
                 SvgPicture.asset(
                   SvgData.heart,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(
@@ -235,7 +235,7 @@ class ItemDetailWidget extends StatelessWidget {
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
       ],

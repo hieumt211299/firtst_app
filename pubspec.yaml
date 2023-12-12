@@ -60,6 +60,7 @@ flutter:
   assets:
     - src/assets/img/
     - src/assets/svg/
+    - src/assets/icon/
 
     # - assets/img/fire.png
     # - assets/img/nft1.png

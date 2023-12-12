@@ -3,7 +3,9 @@ import 'package:fitness_ui/common/avatar_check.dart';
 import 'package:fitness_ui/home/widgets/awesome_colection.dart';
 import 'package:fitness_ui/home/widgets/category_widget.dart';
 import 'package:fitness_ui/home/widgets/colection.dart';
+import 'package:fitness_ui/home/widgets/profile/profile.dart';
 import 'package:fitness_ui/home/widgets/search_page/search_page.dart';
+import 'package:fitness_ui/home/widgets/statistic/statistic.dart';
 import 'package:fitness_ui/home/widgets/trending/trending_nft.dart';
 import 'package:fitness_ui/home/widgets/header_widget.dart';
 import 'package:fitness_ui/home/widgets/search_bar_widget.dart';
@@ -23,16 +25,25 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-
+  Map<int, GlobalKey<NavigatorState>> navigatorKeys = {
+    0: GlobalKey<NavigatorState>(),
+    1: GlobalKey<NavigatorState>(),
+    2: GlobalKey<NavigatorState>(),
+    3: GlobalKey<NavigatorState>(),
+  };
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeWidget(),
-    const ChartWidget(),
+    const StatusticWidget(),
     const SearchPage(),
+    ProfileWidget(
+      back: () {},
+    )
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      // print('_onItemTapped');
     });
   }
 
@@ -42,13 +53,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      // appBar: AppBar(
-      //   title: const Padding(
-      //     padding: EdgeInsets.only(top: 30),
-      //     child: HeaderWidget(),
-      //   ),
-      // ),
-      body: SafeArea(child: _widgetOptions[_selectedIndex]),
+      // body: SafeArea(child: _widgetOptions[_selectedIndex]),
+      body: SafeArea(
+        child: Navigator(
+          key: navigatorKeys[_selectedIndex],
+          onGenerateRoute: (RouteSettings settings) {
+            return MaterialPageRoute(
+                builder: (_) => _widgetOptions.elementAt(_selectedIndex));
+          },
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
         showSelectedLabels: false,
@@ -105,119 +119,119 @@ class HomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 0, top: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 25),
-              child: HeaderWidget(),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 25),
-              child: SearchBarWidget(),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const TrendingNFT(),
-            const SizedBox(
-              height: 20,
-            ),
-            const CategoryWidget(),
-            const SizedBox(
-              height: 40,
-            ),
-            const ColectionWidget(
-              title: 'Hot Colections',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 25),
-              child: AwesomeCollectionWidget(),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 15, left: 25),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Row(
+    return Stack(
+      children: [
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 0, top: 60),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 25),
+                  child: SearchBarWidget(),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const TrendingNFT(),
+                const SizedBox(
+                  height: 20,
+                ),
+                const CategoryWidget(),
+                const SizedBox(
+                  height: 40,
+                ),
+                const ColectionWidget(
+                  title: 'Hot Colections',
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 25),
+                  child: AwesomeCollectionWidget(),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 15, left: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
+                      const Row(
                         children: [
-                          AvatarCheckWidget(
-                              avatar: ImageData.avatar1,
-                              size: 44,
-                              place: 'bottom'),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
                             children: [
-                              Text(
-                                'Abstrack 3D Coloring #332',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w600,
-                                ),
+                              AvatarCheckWidget(
+                                  avatar: ImageData.avatar1,
+                                  size: 44,
+                                  place: 'bottom'),
+                              SizedBox(
+                                width: 15,
                               ),
-                              Text(
-                                'by Silvana',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontFamily: 'SF Pro Display',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              )
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Abstrack 3D Coloring #332',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Text(
+                                    'by Silvana',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ],
                           ),
                         ],
                       ),
+                      Container(
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(width: 1),
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: Text('32 ITEM'),
+                        ),
+                      ),
                     ],
                   ),
-                  Container(
-                    decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(width: 1),
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Text('32 ITEM'),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
             ),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class ChartWidget extends StatelessWidget {
-  const ChartWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text(
-      'Index 1: chart',
+        Positioned(
+          child: Container(
+            color: Colors.grey[50],
+            width: double.infinity,
+            height: 60,
+            child: const Padding(
+              padding: EdgeInsets.only(left: 25),
+              child: HeaderWidget(),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
