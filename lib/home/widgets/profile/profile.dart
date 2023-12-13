@@ -1,9 +1,12 @@
 import 'package:fitness_ui/common/avatar.dart';
 import 'package:fitness_ui/common/check_noti.dart';
+import 'package:fitness_ui/common/globals.dart';
 import 'package:fitness_ui/common/icon_button.dart';
 import 'package:fitness_ui/common/money.dart';
+import 'package:fitness_ui/home/widgets/search_page/search_page.dart';
 import 'package:fitness_ui/home/widgets/statistic/statistic.dart';
 import 'package:fitness_ui/utils/imagedata.dart';
+import 'package:fitness_ui/utils/item_model.dart';
 import 'package:fitness_ui/utils/svgdata.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,6 +18,12 @@ List<Map<String, dynamic>> settingItems = [
   {'icon': const Icon(Icons.person), 'title': 'Share Your Profile'},
   {'icon': const Icon(Icons.star), 'title': 'Favorite'},
   {'icon': const Icon(Icons.logout), 'title': 'Logout'},
+];
+List<Item> itemsList = [
+  IGlobals.item1,
+  IGlobals.item2,
+  IGlobals.item3,
+  IGlobals.item4
 ];
 
 enum TypeInfo { view, money, percent }
@@ -50,18 +59,18 @@ class ProfileWidget extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 23),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      IconButtonWidget(
-                        icon: const Icon(Icons.arrow_back_ios_new),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const StatusticWidget(),
-                              ));
-                        },
-                      ),
+                      // IconButtonWidget(
+                      //   icon: const Icon(Icons.arrow_back_ios_new),
+                      //   onPressed: () {
+                      //     Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //           builder: (context) => const StatusticWidget(),
+                      //         ));
+                      //   },
+                      // ),
                       IconButtonWidget(
                         icon: const Icon(Icons.more_vert),
                         onPressed: () {
@@ -216,25 +225,14 @@ class ProfileWidget extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  height: 300,
-                  color: Colors.green,
+                  height: 600,
                   child: const TabBarView(
                     children: [
                       Column(
                         children: [
-                          Text('1'),
-                          Text('1'),
-                          Text('1'),
-                          Text('1'),
-                          Text('1'),
-                          Text('1'),
-                          Text('1'),
-                          Text('1'),
-                          Text('1'),
-                          Text('1'),
-                          Text('1'),
-                          Text('1'),
-                          Text('1'),
+                          ItemWidget(
+                            title: false,
+                          ),
                         ],
                       ),
                       Text('2'),

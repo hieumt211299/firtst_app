@@ -126,13 +126,13 @@ class StatusticWidget extends StatelessWidget {
   ];
   static List<Widget> tabDetails = [
     Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Row(
+          const Row(
             children: [
               DropDownWidget(
                 list: ['All Categories', 'Two', 'Three', 'Four'],
@@ -148,10 +148,10 @@ class StatusticWidget extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.only(top: 8),
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(11, 11, 11, 0),
+                  padding: const EdgeInsets.fromLTRB(11, 11, 11, 0),
                   child: Column(
                     children: [
 // StatisticDetailWidget(listRangking[0])
@@ -169,7 +169,50 @@ class StatusticWidget extends StatelessWidget {
         ],
       ),
     ),
-    const Text('ghjghjh')
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 15,
+          ),
+          const Row(
+            children: [
+              DropDownWidget(
+                list: ['All Categories', 'Two', 'Three', 'Four'],
+                icon: Icon(Icons.category_sharp),
+              ),
+              SizedBox(
+                width: 6,
+              ),
+              DropDownWidget(
+                  list: ['All Chains', 'Two', 'Three', 'Four'],
+                  icon: Icon(Icons.link)),
+            ],
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(11, 11, 11, 0),
+                  child: Column(
+                    children: [
+// StatisticDetailWidget(listRangking[0])
+                      for (var item in listRangking.asMap().entries)
+                        StatisticDetailWidget(
+                          index: item.key,
+                          ranngking: item.value,
+                        )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    ),
   ];
 
   @override

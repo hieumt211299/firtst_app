@@ -58,19 +58,21 @@ class SearchPage extends StatelessWidget {
 }
 
 class ItemWidget extends StatelessWidget {
+  final bool title;
   const ItemWidget({
     super.key,
+    this.title = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: IGlobals.spaceLeft,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Items',
+            title ? 'Items' : '',
             style: TextStyle(
               color: Colors.black,
               fontSize: 18,
